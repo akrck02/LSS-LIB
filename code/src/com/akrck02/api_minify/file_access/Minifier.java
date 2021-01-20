@@ -56,7 +56,7 @@ public class Minifier {
             }
             br.close();
         } catch (FileNotFoundException e) {
-            log(e.getStackTrace().toString());
+            log(e.getCause().getMessage());
         }
         catch (IOException ignored) {}
     }
