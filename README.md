@@ -1,6 +1,6 @@
 
- <div align='center'>
-  <h2> API_Minify </h2>
-    <img style='width:80%;' src='banner.svg'>
-    <p> A minify tool for your Javascript, Php, css APIs/frameworks</p>
+<h2> API_Minify </h2> 
+<div align='center'>
+    <img style='width:80%; max-width:500px' src='banner.png'>
+    <p> A minify tool for your Javascript, PHP, CSS APIs/frameworks</p>
 </div>
