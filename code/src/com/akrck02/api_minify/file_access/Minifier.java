@@ -1,13 +1,13 @@
-package com.akstrap.compiler;
+package com.akrck02.api_minify.file_access;
 
 import javax.swing.*;
 import java.io.*;
 
-public class Compiler {
+public class Minifier {
     public static BufferedWriter master;
     public static JTextArea console_out;
 
-    public static void compile(String path, String out, JTextArea out_txt){
+    public static void minify(String path, String out, JTextArea out_txt){
         try {
             File dir = new File(path);
             File output_file = new File(out);
@@ -21,7 +21,7 @@ public class Compiler {
         } catch (IOException e) {log("Cannot compile this version.");}
     }
 
-    public static void compile(String path,String out){
+    public static void minify(String path, String out){
         try {
             File dir = new File(path);
             File output_file = new File(out);
@@ -67,7 +67,7 @@ public class Compiler {
     }
 
     public static void main(String[] args) {
-        compile("C:/Users/akrck02/Desktop/out/akstrap_v1.0/","C:/Users/akrck02/Desktop/out/akstrap_v1.0.css");
+        minify("C:/Users/akrck02/Desktop/out/akstrap_v1.0/","C:/Users/akrck02/Desktop/out/akstrap_v1.0.css");
     }
 
 }

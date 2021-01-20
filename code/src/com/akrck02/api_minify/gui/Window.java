@@ -1,11 +1,14 @@
-package com.akstrap.compiler;
+package com.akrck02.api_minify.gui;
+
+import com.akrck02.api_minify.file_access.Minifier;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Akstrap_window extends JFrame {
+public class Window extends JFrame {
     Color dark,light,medium,white;
     Border border,lightborder;
     Cursor pointer;
@@ -16,7 +19,7 @@ public class Akstrap_window extends JFrame {
 
     int W = 800, H=600;
 
-    public Akstrap_window(){
+    public Window(){
         setContentPane(getContentPane());
         dark = new Color(0xfafafa);
         light = new Color(255,255,255);
@@ -119,13 +122,13 @@ public class Akstrap_window extends JFrame {
         go.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Compiler.compile(in.getText().trim(),out.getText().trim(),text);
+                Minifier.minify(in.getText().trim(),out.getText().trim(),text);
             }
         });
     }
 
     public static void main(String[] args) {
-        new Akstrap_window();
+        new Window();
     }
 
 }

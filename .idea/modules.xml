@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Akstrap_compiler.iml" filepath="$PROJECT_DIR$/Akstrap_compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/API_Minify.iml" filepath="$PROJECT_DIR$/API_Minify.iml" />
     </modules>
   </component>
 </project>
