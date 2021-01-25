@@ -113,7 +113,8 @@ public class Window extends JFrame {
         go.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Minifier.minify(in.getText().trim(),out.getText().trim(),text);
+                Minifier.set_console_out(text);
+                Minifier.minifyCSS(in.getText().trim(),out.getText().trim());
             }
         });
     }

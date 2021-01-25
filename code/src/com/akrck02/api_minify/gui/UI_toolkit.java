@@ -47,4 +47,10 @@ public class UI_toolkit {
         return lbl;
     }
 
+    public static JComboBox<String> new_combo_box(){
+        JComboBox<String> box = new JComboBox<String>();
+
+        return box;
+    }
+
 }
