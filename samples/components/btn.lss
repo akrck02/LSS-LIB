@@ -1,0 +1,13 @@
+--accent = rgba(0,90,200);
+--white = rgba(255,255,255);
+
+class btn = [
+    padding: 10px;
+    font-size: 1em;
+];
+
+accentBtn < btn {
+    background-color : --accent;
+    color: --white;
+}
+
