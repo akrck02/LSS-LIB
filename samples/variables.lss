@@ -1,5 +1,0 @@
-	
-	Golbal accent = #0000fa;
-	Global bg = #fafafa;
-	Global txt_color = #404040;
-	Global border_def = 1px solid --txt-color;
