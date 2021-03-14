@@ -1,3 +1,3 @@
 
-<h2> LSS - Logic CSS Language </h2> 
+<h2> LSS - Logic Style Sheets </h2> 
 
