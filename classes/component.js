@@ -43,7 +43,11 @@ export class Component {
   inherit(parent){
     for (const key in parent.variables)   if(this.variable_pro(key) == undefined)   this._variable(parent.variable_pro(key));
     for (const key in parent.styles)      if(this.style(key) == undefined)      this._style(parent.styles[key]);
-
+    for (const key in parent.variations)      if(this.variation(key) == undefined) {
+      const vr = parent.variations[key]
+      vr.parent = this.name;
+      this._variation(vr);
+    }    
     return this;
   }
  

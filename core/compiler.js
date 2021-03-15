@@ -23,7 +23,8 @@ const json = {
     variables : {bg : 'dodgerblue'},
     variations : {
         disabled : {'--bg' : 'gray'}
-    }
+    },
+    uid:"GenericButton1"
 }
 
 //TESTING AREA 
@@ -35,6 +36,10 @@ const child = {
         width : '20px'
     },
     variables : {bg : 'crimson'},
+    variations : {
+        disabled : {'--bg' : 'lightgray'}
+    },
+    id:"GenericButton2"
 }
 
 out. innerHTML = "PARENT : " + extract(json).compile();

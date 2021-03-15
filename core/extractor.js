@@ -22,7 +22,9 @@ export function extract(json){
 
 function extract_component(json){
     
-    if(!exists(json.name)) throw "[LSS][ERROR] No name in component";
+    if(!exists(json.uid))  json.uid = "Unknown.";
+
+    if(!exists(json.name)) throw "[LSS][ERROR] No name in component " + json.uid;
     const component = new Component(json.name);
 
     if(exists(json.variables))
@@ -42,12 +44,9 @@ function extract_component(json){
             for(const style in json.variations[key]){
                 vr._style(new Style(style,json.variations[key][style]));
             }
-            console.log(vr.compile());
             component._variation(vr);
         }
 
-
-    console.log(component);
     return component;
 }
 

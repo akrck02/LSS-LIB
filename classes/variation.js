@@ -9,8 +9,9 @@ export class Variation {
     _variable    (variable)   {this.variables[variable.name] = variable;}
     _style       (style)      {this.styles[style.name] = style;}
   
-    set variables(p) {this._variables = p;}
-    set styles(p) {this._styles = p;}
+    set variables(p)  {this._variables = p;}
+    set styles(p)     {this._styles = p;}
+    set parent(p)     {this._parent = p;}
   
     get name()       {return this._name;}
     get parent()     {return this._parent;}
