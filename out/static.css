@@ -1,0 +1,39 @@
+/* PARENT : */
+.button {
+  --bg: dodgerblue;
+  background: var(--bg);
+  width: 100px;
+  height: 25px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.button.disabled {
+  --bg: gray;
+}
+.button:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+.button:focus {
+  border: 3px solid black;
+} /* CHILD: */
+.button_red {
+  --bg: crimson;
+  background: var(--bg);
+  width: 120px;
+  height: 25px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.button_red.disabled {
+  --bg: lightgray;
+}
+.button_red:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+.button_red:focus {
+  border: 3px solid black;
+}

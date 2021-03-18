@@ -1,4 +1,3 @@
-import * as fileSaver from "../lib/FileSaver.js";
 import { extract } from "./extractor.js";
 
 export function compile(comp){
@@ -8,7 +7,7 @@ export function compile(comp){
 
 function save(content){
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    fileSaver.saveAs(blob, "static.css");
+    //fileSaver.saveAs(blob, "static.css");
 }
 
 //TESTING AREA 
@@ -18,11 +17,19 @@ const json = {
     styles : {
         background : '--bg',
         width : '100px',
-        height : '25px'
+        height : '25px',
+        border : 'none',
+        color  : 'white',
+        cursor : 'pointer',
+        'border-radius' : '6px'
     },
     variables : {bg : 'dodgerblue'},
     variations : {
         disabled : {'--bg' : 'gray'}
+    },
+    actions : {
+        hover: {'box-shadow' : '0px 2px 4px rgba(0,0,0,.15)'},
+        focus: {border: '3px solid black'}
     },
     uid:"GenericButton1"
 }
@@ -33,7 +40,7 @@ const child = {
     type : 'component',
     styles : {
         background : '--bg',
-        width : '20px'
+        width : '120px'
     },
     variables : {bg : 'crimson'},
     variations : {
@@ -42,6 +49,7 @@ const child = {
     id:"GenericButton2"
 }
 
-out. innerHTML = "PARENT : " + extract(json).compile();
-out.innerHTML += "<br>";
-out.innerHTML += "CHILD: " + extract(child).inherit(extract(json)).compile();
+out. innerHTML = " /* PARENT : */ " + extract(json).compile();
+out.innerHTML += " /* CHILD: */ " + extract(child).inherit(extract(json)).compile();
+
+btn.onclick = () => save(out.innerHTML);
