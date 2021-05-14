@@ -7,6 +7,7 @@ This library is SIMPLE.<br>
 > _Create element / class / theme_.<br>
 > _Set variables_. <br>
 > _Set actions and settings_. <br>
+> _Compile._
 
 ## Creating frameworks programmatically.
 > Creating UI with object oriented programming (OOP) just makes sense.<br>
