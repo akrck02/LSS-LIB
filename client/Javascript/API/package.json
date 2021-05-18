@@ -1,0 +1,30 @@
+{
+  "name": "lss_api",
+  "version": "1.0.0",
+  "description": "Javascript API for easy css code generation",
+  "main" : "LSS_API.js",
+  "bin": {
+    "hello": "./LSS_API.js"
+  },
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akrck02/LSS_API.git"
+  },
+  "keywords": [
+    "code",
+    "generate",
+    "ui",
+    "styles",
+    "javascript",
+    "css"
+  ],
+  "author": "akrck02",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akrck02/LSS_API/issues"
+  },
+  "homepage": "https://github.com/akrck02/LSS_API#readme"
+}
