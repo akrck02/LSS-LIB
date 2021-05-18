@@ -1,2 +1,7 @@
 *.iml
 */node_modules/
+*.class
+*.idea/
+*.idea
+*.iml
+*fake/
