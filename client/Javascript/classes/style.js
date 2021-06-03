@@ -11,4 +11,5 @@ export class Style {
     set value(value)  {this._value = value;}
 
     line() { return this.name + " : " + this.value + " ;"}
+    compile() { return this.value;}
 }

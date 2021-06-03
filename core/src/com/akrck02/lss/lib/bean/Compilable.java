@@ -1,4 +1,4 @@
-package com.akrck02.lss.lib.beans;
+package com.akrck02.lss.lib.bean;
 
 /**
  * This interface represents any

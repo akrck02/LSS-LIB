@@ -1,0 +1,34 @@
+comp { 
+	--baseHeight : 50px;
+	--materialBlue : #00A0ff;
+	border : 1px solid blue;
+	background : var(--materialBlue);
+ }
+ comp:hover { 
+	--pink : #ff00ff;
+	background : var(--pink);
+ }
+
+button { 
+	--color : #fff;
+	--materialBlue : #00A0ff;
+	border : 1px solid blue;
+	color : var(--color);
+	background : var(--materialBlue);
+ }
+ button:hover { 
+	border-radius : 0px 2px 4px rgba(0,0,0,.15);
+ }
+
+myComponent { 
+	--bg : #f1f1f1;
+	Background : var(--bg);
+	color : #404040;
+ }
+ myComponent:hover { 
+	Background : #fff;
+ }
+ myComponent:focus { 
+	Border 1px solid : var(--bg);
+ }
+

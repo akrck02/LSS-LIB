@@ -1,6 +1,15 @@
+import { fileTypes } from "./LSS_Context.js";
+
+export const ComponentTypes = {
+  component : "component",
+  class     : "class",
+  id        : "id",  
+};
+
 export class Component {
-  constructor(name) {
+  constructor(name, type) {
     this._name = name;
+    this.type = type || ComponentTypes.component;
     this._styles = {};
     this._actions = {};
     this._variations = {};
@@ -29,7 +38,7 @@ export class Component {
   action        (name)    {return this.actions[name];}
   variation     (name)    {return this.variations[name];}
 
-  compile(){ 
+  compileCSS(){ 
     let out = `.${this.name}{`;
     for (const key in this.variables)  out += this.variable_pro(key).line() + ";";
     for (const key in this.styles)   out += this.style(key).line();  
@@ -40,6 +49,32 @@ export class Component {
 
     return out;
   }
+
+  compile(){
+    let lss = {};
+
+    lss.type = fileTypes.COMPONENT;
+    lss.name = this.name;
+
+    lss.variables = {};
+    lss.styles = {};
+    lss.actions = {};
+
+    for (const key in this.variables) {
+     lss.variables[key] = this.variables[key].compile();
+    }
+
+    for (const key in this.styles) {
+     lss.styles[key] = this.styles[key].compile();
+    }
+
+    for (const key in this.actions) {
+     lss.actions[key] = this.actions[key].compile();
+    }
+
+    return JSON.stringify(lss,undefined,4).replaceAll('"_','"');;
+  }
+
 
   inherit(parent){
     for (const key in parent.variables)

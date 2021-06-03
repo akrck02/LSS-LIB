@@ -1,5 +1,7 @@
 package com.akrck02.lss.lib.toollkit;
 
+import com.akrck02.lss.lib.bean.FunctionVoid;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import java.io.FileInputStream;
@@ -11,8 +13,14 @@ public class JsonUtils {
             JSONObject root = new JSONObject(tokener);
             return root;
         } catch (Exception e ) {
-            Logger.error("Json parse","Lss cannot parse " + url);
+            Logger.error("Parser","Lss cannot parse " + url);
             return  null;
         }
+    }
+
+    public static void runIgnoring(FunctionVoid f){
+        try {
+            f.eval();
+        }catch (JSONException ignored){}
     }
 }

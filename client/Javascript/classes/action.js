@@ -23,6 +23,25 @@ export class Action {
     style         (name)    {return this.styles[name];}
 
     compile(){ 
+      let lss = {};
+
+      lss.name = this.name;
+  
+      lss.variables = {};
+      lss.styles = {};
+      
+      for (const key in this.variables) {
+       lss.variables[key] = this.variables[key].compile();
+      }
+
+      for (const key in this.styles) {
+       lss.styles[key] = this.styles[key].compile();
+      }
+  
+      return lss;
+    }
+
+    compileCSS(){
       let out = `.${this.parent}:${this.name}{`;
       for (const key in this.variables)  out += this.variable_pro(key).line() + ";";
       for (const key in this.styles)   out += this.style(key).line();  

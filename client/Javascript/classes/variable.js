@@ -13,4 +13,5 @@ export class Variable {
     var(){return '--' + this._name;}
     line(){return this.var() + " : " + this.value;}
     css_var(){return "var(" + this.var() + ")"}
+    compile() { return this.value;}
 }

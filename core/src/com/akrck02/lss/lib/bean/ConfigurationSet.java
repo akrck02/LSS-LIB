@@ -1,4 +1,4 @@
-package com.akrck02.lss.lib.beans;
+package com.akrck02.lss.lib.bean;
 
 import java.util.ArrayList;
 import java.util.List;

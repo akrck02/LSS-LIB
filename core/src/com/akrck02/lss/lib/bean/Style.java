@@ -1,4 +1,4 @@
-package com.akrck02.lss.lib.beans;
+package com.akrck02.lss.lib.bean;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ public class Style extends Property implements Compilable{
      * @param name - The name of style
      * @param value - The value
      */
-    Style(String name,String value){
+    public Style(String name, String value){
         this.name = Optional.ofNullable(name);
         this.value = Optional.ofNullable(value);
     }
@@ -35,5 +35,10 @@ public class Style extends Property implements Compilable{
         compiled += this.value.orElse("none") + ";";
 
         return compiled;
+    }
+
+    @Override
+    public String toString() {
+        return this.compile(new ConfigurationSet());
     }
 }
