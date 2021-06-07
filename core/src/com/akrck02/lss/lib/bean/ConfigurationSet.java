@@ -42,12 +42,12 @@ public class ConfigurationSet {
 
     public void setInput(String input) {
         Optional<String> optIn = Optional.ofNullable(input);
-        this.input = optIn.isEmpty() ? Optional.of("./") : optIn;
+        this.input = optIn.isPresent() ?  optIn : Optional.of("./");
     }
 
     public void setOutput(String output) {
         Optional<String> optOut = Optional.ofNullable(output);
-        this.output = optOut.isEmpty() ? Optional.of("./dist/master.css") : optOut;
+        this.output = optOut.isPresent() ? optOut : Optional.of("./dist/master.css");
     }
 
     public void setMinify(boolean minify) {

@@ -23,13 +23,16 @@ public class Parser {
     public void access(String path){
         File current = new File(path);
         boolean directory = current.isDirectory();
+
         if(directory){
+            if(path.contains("dist")) return;
             if(path.charAt(path.length()-1) != '/') path += "/";
 
             String[] contentList = current.list();
-            for (String content : contentList) {
-                access(path + content);
-            }
+            if(contentList != null)
+                for (String content : contentList) {
+                    access(path + content);
+                }
         }else {
             String name = current.getName();
             int dotIndex = name.lastIndexOf(".");
@@ -81,7 +84,6 @@ public class Parser {
             String name = json.getString("name");
             String type = json.getString("type");
 
-            //TODO echance this please :)
             Component.ComponentType compType =  Component.ComponentType.COMPONENT;
             try {
                 compType = Component.ComponentType.valueOf(type.toUpperCase());

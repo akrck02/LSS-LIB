@@ -9,19 +9,32 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lss {
 
     public static void main(String[] args) {
 
+        List<String> arguments = Arrays.asList(args);
+
+        String input = "./";
+        String output = "";
+        boolean minify = true;
+
+        if(arguments.contains("-i")){
+            System.out.println("Contains input!");
+        }
+
+        if(arguments.contains("-o")){
+            System.out.println("Contains output!");
+        }
+
+
         ConfigurationSet set = new ConfigurationSet();
         set.addFormat("lss");
-        set.setMinify(false);
-        set.addModule("lssOne");
-        set.addModule("lssTwo");
-        set.setInput("C:/Users/akrck02/Desktop/github/LSS_LIB/fake/");
-
+        set.setMinify(minify);
+        set.setInput(input);
         Parser parser = new Parser(set);
         parser.access(set.getInput());
 
