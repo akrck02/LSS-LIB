@@ -66,6 +66,8 @@ public class Parser {
 
         switch (type) {
             case "component":
+            case "id":
+            case "class":
                 parseComponent(json);
                 break;
             default:
@@ -109,12 +111,13 @@ public class Parser {
             /**
              * Parsing actions
              */
+            Component.ComponentType finalCompType = compType;
             JsonUtils.runIgnoring(() -> {
                 JSONObject actions = json.getJSONObject("actions");
                 actions.keySet().forEach(actionName ->{
                     Action action = new Action();
                     action.setName(actionName);
-                    action.setParentName(name);
+                    action.setParentName(finalCompType.getSuffix() + name);
 
                     JsonUtils.runIgnoring(() -> {
                         JSONObject actionVariables = actions.getJSONObject(actionName).getJSONObject("variables");
@@ -140,6 +143,8 @@ public class Parser {
             Logger.error("Parser","Component has no name, ignoring.");
         }
     }
+
+
 
     /**
      * Get component list

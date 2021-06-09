@@ -75,7 +75,12 @@ public class ConfigurationSet {
     }
 
     public String getOutput() {
-        return output.orElse("./dist/master.css");
+
+        String out =  output.orElse("./dist/master.css");
+        if(out.split(".").length != 0)
+            out = out.split(".")[0] + version.orElse("") + out.split(".")[1];
+
+        return out;
     }
 
     public boolean isMinify() {

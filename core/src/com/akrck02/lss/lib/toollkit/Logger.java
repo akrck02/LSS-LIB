@@ -98,6 +98,20 @@ public class Logger {
     }
 
     /**
+     * Draws a line in console
+     */
+    public static void line(String str) {
+        String base = "-----------------------------------------------------------------------------";
+        String line = "";
+
+        for (int i = 0; i < base.length(); i++) {
+            line += str;
+        }
+
+        System.out.println(line);
+    }
+
+    /**
      * Jumps once
      */
     public static void jump() {
