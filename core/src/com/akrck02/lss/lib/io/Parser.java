@@ -61,6 +61,7 @@ public class Parser {
         try {
             type = (String) json.get("type");
         }catch (JSONException e){
+            json.put("type", Component.ComponentType.COMPONENT.getName());
             Logger.warning("Parser","No type specified, parsing as component.");
         }
 
@@ -140,6 +141,7 @@ public class Parser {
 
             components.add(comp);
         }catch (JSONException e){
+            e.printStackTrace();
             Logger.error("Parser","Component has no name, ignoring.");
         }
     }

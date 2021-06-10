@@ -59,11 +59,16 @@ public class Action implements Compilable {
     @Override
     public String compile(ConfigurationSet config) {
         StringBuilder compiled = new StringBuilder();
+
+        if( variables.size() == 0 && styles.size() == 0 )
+            return "";
+
         compiled.append(this.getParentName()).append(":");
         compiled.append(this.getName()).append(" { ");
 
         if(!config.isMinify())
            compiled.append("\n");
+
 
         for (Variable v : variables) {
             if(!config.isMinify())
@@ -83,7 +88,11 @@ public class Action implements Compilable {
                 compiled.append("\n");
         }
 
-       compiled.append(" }");
+
+       if(config.isMinify())
+           compiled.append(" ");
+
+       compiled.append("}");
        return compiled.toString();
     }
 }

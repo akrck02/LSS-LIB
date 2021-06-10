@@ -17,7 +17,7 @@ public class Lss {
     public static void main(String[] args) {
 
         List<String> arguments = Arrays.asList(args);
-        boolean minify = true;
+        boolean minify = false;
 
         /** Setting runtime data **/
         ConfigurationSet set = new ConfigurationSet();
@@ -36,6 +36,10 @@ public class Lss {
             try {
                //set.setOutput(arguments.get(index));
             }catch (IndexOutOfBoundsException e) {Logger.warning("Output","No value  present. Setting default value.");}
+        }
+
+        if(arguments.contains("-m")){
+          set.setMinify(true);
         }
 
         /** Showing runtime data **/

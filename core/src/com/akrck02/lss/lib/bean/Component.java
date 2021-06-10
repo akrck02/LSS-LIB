@@ -92,6 +92,12 @@ public class Component implements Compilable , LssCoreComponent{
     @Override
     public String compile(ConfigurationSet config) {
         StringBuilder compiled = new StringBuilder();
+        if(config.isMinify())
+            compiled.append(" ");
+
+        if( variables.size() == 0 && styles.size() == 0 )
+            return "";
+
         compiled.append(this.type.getSuffix())
                 .append(this.getName())
                 .append(" { ");
@@ -117,13 +123,18 @@ public class Component implements Compilable , LssCoreComponent{
             if(!config.isMinify())
                 compiled.append("\n");
         }
-        compiled.append(" }");
+        if(config.isMinify()) compiled.append(" ");
+        compiled.append("}");
 
         if(!config.isMinify())
             compiled.append("\n");
 
         for (Action a : actions){
-            compiled.append(" " + a.compile(config));
+            if(config.isMinify())
+                compiled.append(" ");
+
+            compiled.append(a.compile(config));
+
             if(!config.isMinify())
                 compiled.append("\n");
         }
