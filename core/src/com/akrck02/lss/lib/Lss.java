@@ -38,6 +38,29 @@ public class Lss {
             }catch (IndexOutOfBoundsException e) {Logger.warning("Output","No value  present. Setting default value.");}
         }
 
+        if(arguments.contains("--modules")){
+            int index = arguments.indexOf("--modules") + 1;
+            try {
+                String[] modules =arguments.get(index).split(",");
+                for ( String module : modules) {
+                    set.addModule(module);
+                }
+            }catch (IndexOutOfBoundsException e) {Logger.warning("Output","No value  present. Setting default value.");}
+        }
+
+        if(arguments.contains("--formats")){
+            int index = arguments.indexOf("--formats") + 1;
+            try {
+                String[] formats = arguments.get(index).split(",");
+                for ( String format : formats) {
+                    if(!set.getFormats().contains(format))
+                        set.addFormat(format);
+                }
+            }catch (IndexOutOfBoundsException e) {Logger.warning("Output","No value  present. Setting default value.");}
+        }
+
+
+
         if(arguments.contains("-m")){
           set.setMinify(true);
         }
@@ -78,12 +101,12 @@ public class Lss {
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(out));
 
-
             for (LssCoreComponent comp: components) {
                 bufferedWriter.write(comp.compile(set));
                 if(!set.isMinify())
                     bufferedWriter.newLine();
             }
+
             bufferedWriter.close();
         } catch (IOException e) {
             Logger.error("Writer","Cannot write on disk.");

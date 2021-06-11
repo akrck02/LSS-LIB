@@ -14,6 +14,7 @@ public class Component implements Compilable , LssCoreComponent{
     private List<Style> styles;
     private List<Action> actions;
     private List<Variable> variables;
+    private List<String> comments;
 
     public static enum ComponentType {
         COMPONENT("component",""),
@@ -45,6 +46,7 @@ public class Component implements Compilable , LssCoreComponent{
         this.styles = new ArrayList<>();
         this.actions = new ArrayList<>();
         this.variables = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public Component(String name,ComponentType type){
@@ -53,6 +55,7 @@ public class Component implements Compilable , LssCoreComponent{
         this.styles = new ArrayList<>();
         this.actions = new ArrayList<>();
         this.variables = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     /**
@@ -86,6 +89,14 @@ public class Component implements Compilable , LssCoreComponent{
     public void setType(ComponentType type){ this.type = type; }
 
     /**
+     * Add a comment to the component
+     * @param comment - The comment to add
+     */
+    public void addComment(String comment) {
+        comments.add(comment);
+    }
+
+    /**
      * Compile a component
      * @return The compiled CSS
      */
@@ -94,6 +105,16 @@ public class Component implements Compilable , LssCoreComponent{
         StringBuilder compiled = new StringBuilder();
         if(config.isMinify())
             compiled.append(" ");
+
+        if(!config.isMinify()) {
+            if(comments.size() > 0){
+                compiled.append("/*");
+                for (String comment : comments) {
+                    compiled.append("\n\t" + comment);
+                }
+                compiled.append("\n*/\n");
+            }
+        }
 
         if( variables.size() == 0 && styles.size() == 0 )
             return "";

@@ -3,6 +3,7 @@ package com.akrck02.lss.lib.io;
 import com.akrck02.lss.lib.bean.*;
 import com.akrck02.lss.lib.toollkit.JsonUtils;
 import com.akrck02.lss.lib.toollkit.Logger;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -92,6 +93,14 @@ public class Parser {
                 compType = Component.ComponentType.valueOf(type.toUpperCase());
             }catch (IllegalArgumentException ignore){}
             Component comp = new Component(name,compType);
+
+            /**
+             * Parsing comments
+             */
+            JsonUtils.runIgnoring( () ->{
+                JSONArray comments = json.getJSONArray("comments");
+                comments.forEach(comment -> comp.addComment(comment + ""));
+            });
 
             /**
              * Parsing styles
