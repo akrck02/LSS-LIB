@@ -9,12 +9,14 @@ import java.util.Optional;
  */
 public class Component implements Compilable , LssCoreComponent{
 
+    private String  uid;
     private Optional<String> name;
     private ComponentType type;
     private List<Style> styles;
     private List<Action> actions;
     private List<Variable> variables;
     private List<String> comments;
+    private List<Component> inside;
 
     public static enum ComponentType {
         COMPONENT("component",""),
@@ -34,13 +36,13 @@ public class Component implements Compilable , LssCoreComponent{
         public String getName(){
             return name;
         }
-
         public String getSuffix(){
             return this.suffix;
         }
     }
 
-    public Component(String name){
+    public Component(String name, String id){
+        this.uid = id;
         this.name = Optional.ofNullable(name);
         this.type = ComponentType.COMPONENT;
         this.styles = new ArrayList<>();
@@ -49,7 +51,8 @@ public class Component implements Compilable , LssCoreComponent{
         this.comments = new ArrayList<>();
     }
 
-    public Component(String name,ComponentType type){
+    public Component(String name,ComponentType type,String id){
+        this.uid = id;
         this.name = Optional.ofNullable(name);
         this.type = type;
         this.styles = new ArrayList<>();
@@ -172,6 +175,10 @@ public class Component implements Compilable , LssCoreComponent{
 
     public List<Action> getActions() {
         return actions;
+    }
+
+    public String getUid(){
+        return uid;
     }
 
     public List<Variable> getVariables() {

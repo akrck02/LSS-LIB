@@ -13,7 +13,10 @@ public class Logger {
         KILL("Kill","007"),
         CONNECT("Connect","008"),
         DISCONNECT("Disconnect","009"),
-        SEARCH("Search","010")
+        SEARCH("Search","010"),
+        CREATE("Create","011"),
+        SET("Set","012"),
+        COMPARE("Compare","013"),
         ;
 
         String name;

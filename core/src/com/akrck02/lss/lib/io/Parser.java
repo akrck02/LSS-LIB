@@ -8,17 +8,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Parser {
     ConfigurationSet config;
     List<LssCoreComponent> components;
+    Set<String> uidSet;
 
     public Parser(ConfigurationSet config){
         this.config = config;
         this.components  = new ArrayList<>();
+        this.uidSet  = new HashSet<>();
     }
 
     public void access(String path){
@@ -88,13 +88,22 @@ public class Parser {
             String name = json.getString("name");
             String type = json.getString("type");
 
-            Component.ComponentType compType =  Component.ComponentType.COMPONENT;
+            Component.ComponentType compType = Component.ComponentType.COMPONENT;
             try {
                 compType = Component.ComponentType.valueOf(type.toUpperCase());
-            }catch (IllegalArgumentException ignore){}
-            Component comp = new Component(name,compType);
+            } catch (IllegalArgumentException ignore) {
+            }
 
-            /**
+            String id;
+            do{
+                UUID uid = UUID.randomUUID();
+                id = uid.toString();
+            } while (uidSet.contains(id));
+
+            Component comp = new Component(name,compType,id);
+            uidSet.add(id);
+
+            /*
              * Parsing comments
              */
             JsonUtils.runIgnoring( () ->{
@@ -102,7 +111,7 @@ public class Parser {
                 comments.forEach(comment -> comp.addComment(comment + ""));
             });
 
-            /**
+            /*
              * Parsing styles
              */
             JsonUtils.runIgnoring( () -> {
@@ -110,7 +119,7 @@ public class Parser {
                 styles.keySet().forEach(styleName -> comp.addStyle(new Style(styleName, styles.get(styleName) + "")));
             });
 
-            /**
+            /*
              * Parsing variables
              */
             JsonUtils.runIgnoring( () -> {
@@ -118,7 +127,7 @@ public class Parser {
                 variables.keySet().forEach(variableName -> comp.addVariable(new Variable(variableName, variables.get(variableName) + "")));
             });
 
-            /**
+            /*
              * Parsing actions
              */
             Component.ComponentType finalCompType = compType;
@@ -142,8 +151,6 @@ public class Parser {
                             styleName -> action.addStyle(new Style(styleName,actionStyles.getString(styleName)))
                         );
                     });
-
-
                     comp.addActions(action);
                 });
             });
