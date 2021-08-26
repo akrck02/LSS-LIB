@@ -24,3 +24,4 @@ This library is SIMPLE.<br>
 ## Supported languages 
  - `Java (Core / Client)`
  - `Javascript (Client)`
+ - `Typescript (Client)`
