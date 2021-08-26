@@ -14,7 +14,15 @@ export default class Theme implements theme {
     addVariable(variable : variable): void {
         this.variables[variable.name] = variable;
     }
+
     compile(): string {
-        return "";
+        let out = this.name + " : {";
+
+        for (const key in this.variables) {
+         out += this.variables[key].compile();
+        }
+
+        out += "}";
+        return out; 
     }
 }

@@ -1,32 +1,48 @@
 import component from '../interfaces/component.ts';
 import uiobject from '../interfaces/uiobject.ts';
-import { StyleMap, VariableMap, UIMap } from '../data/global.ts';
-import { FILE_TYPES } from '../data/lssContext.ts';
+import {  } from '../data/global.ts';
+import { COMPONENT_TYPES } from '../data/lssContext.ts';
 
 export default class Component implements component {
     
     uid: string;
     name: string;
-    fileType: FILE_TYPES;
+    type: COMPONENT_TYPES;
     parent: uiobject | undefined;
    
-    styles : StyleMap;
+    styles : StringMap;
     actions : UIMap;
     variations : UIMap;
     variables : VariableMap;
 
-    constructor(uid: string, name: string, fileType: FILE_TYPES) {
+    constructor(uid: string, name: string, type: COMPONENT_TYPES) {
         this.uid = uid;
         this.name = name;
-        this.fileType = fileType;
+        this.type = type;
         this.styles = {};
         this.actions = {};
         this.variations = {};
         this.variables = {};  
     }
 
-    compile() : string{
-        return '';
+    compile() : string {
+        
+        let out = {
+            uid : this.uid, 
+            name : this.name,
+            type : this.type,
+            variables : {},
+            styles : {},
+        };
+
+
+
+   
+        
+
+
+        return JSON.stringify(out);
+
     }
 
     compileCss() : string {
