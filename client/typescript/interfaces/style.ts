@@ -1,9 +1,7 @@
+import LSSObject from "./lssobject.ts";
 
-//Definition of the Style interface
-export default interface Style {
+export default interface Style extends LSSObject {
     name: string;
     value: string;
-    line(): string;
-    compile(): string;
 }
 

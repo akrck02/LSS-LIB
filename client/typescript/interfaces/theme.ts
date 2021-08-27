@@ -1,10 +1,9 @@
-import Variable from "./variable.ts";
-import { VariableMap } from "../data/global.ts";
+import LSSObject from './lssobject.ts';
 
-export default interface Theme {
+export default interface Theme extends LSSObject {
     name: string;
-    variables: VariableMap;
+    variables: string [];
 
-    addVariable(variable : Variable): void;
+    addVariable(id: string): void;
     compile(): string;
 }

@@ -6,3 +6,4 @@ export default function uid() : string {
         return v.toString(16);
     });
 }
+

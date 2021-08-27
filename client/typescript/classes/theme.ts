@@ -1,28 +1,34 @@
 import theme from '../interfaces/theme.ts';
-import variable from '../interfaces/variable.ts';
-import { VariableMap } from "../data/global.ts";
+import { generateUID } from "../data/cache.ts";
+import { FILE_TYPES } from '../data/lssContext.ts';
+import * as logger from "../tools/logger.ts"; 
 
 export default class Theme implements theme {
+    
+    fileType : FILE_TYPES;
+    uid: string;
     name: string;
-    variables: VariableMap;
+    variables: string[];
 
     constructor(name: string) {
+        this.fileType = FILE_TYPES.THEME;
+        this.uid = generateUID(this);
         this.name = name;
-        this.variables = {};
+        this.variables = [];
+        logger.log('New theme',this.name);
     }
 
-    addVariable(variable : variable): void {
-        this.variables[variable.name] = variable;
+    addVariable(uid : string): void {
+        this.variables.push(uid);
     }
 
     compile(): string {
-        let out = this.name + " : {";
-
-        for (const key in this.variables) {
-         out += this.variables[key].compile();
-        }
-
-        out += "}";
-        return out; 
+        let out = {
+            fileType: this.fileType,
+            uid: this.uid,
+            name: this.name,
+            variables: this.variables
+        };
+        return JSON.stringify(out);
     }
 }

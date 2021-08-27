@@ -1,21 +1,15 @@
-import { VariableMap, StyleMap, UIMap } from '../data/global.ts';
+import LSSObject from './lssobject.ts';
 
-export default interface UIObject {
+export default interface UIObject extends LSSObject {
     uid: string;
     name: string;
-    variables : VariableMap;
-    styles : StyleMap;
-    variations: UIMap;
-    actions: UIMap;
-    parent? : UIObject;
+    variables : string [];
+    styles : string [];
+    variations: string [];
+    actions: string [];
+    parent ? : string | undefined;
 
     compile() : string;
-    compileCss() : string;
     inherit(parent: UIObject) : void;
-    setParent(parent: UIObject) : void;
-
-    getVariables() : VariableMap;
-    getStyles() : StyleMap;
-    getActions() : UIMap;
-    getVariations() : UIMap;
+    setParent(parent: string) : void;
 }

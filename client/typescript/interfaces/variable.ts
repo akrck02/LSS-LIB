@@ -1,9 +1,9 @@
-//Definition of the Variable interface
-export default interface Variable {
+import LSSObject from './lssobject.ts';
+
+export default interface Variable extends LSSObject  {
     name: string;
     value: string;
     var(): string;
     line(): string;
-    css_var(): string;
-    compile(): string;
+    cssVar(): string;
 }

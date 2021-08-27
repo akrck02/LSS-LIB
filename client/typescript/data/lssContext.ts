@@ -1,16 +1,22 @@
 export enum FILE_TYPES {
-    COMPONENT,
-    THEME,
-    CONFIG,
+    COMPONENT = 'component',
+    THEME = 'theme',
+    STYLE = 'style',
+    VARIABLE = 'variable',
+    ACTION = 'action',
+    VARIATION = 'variation',
+    ANIMATION = 'animation',
+    MEDIA = 'media',
 };
 
 export enum ACTION_TYPES {
-    PSEUDOELEMENT,
-    PSEUDOCLASS,
+    PSEUDOELEMENT = 'pseudoelement',
+    PSEUDOCLASS = 'pseudoclass',
 } 
 
 export enum COMPONENT_TYPES {
-    COMPONENT,
-    CLASS,
-    ID,
+    COMPONENT = 'component',
+    CLASS = 'class',
+    ID = 'id',
 }
+

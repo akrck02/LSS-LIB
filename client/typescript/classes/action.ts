@@ -1,59 +1,57 @@
 import action from '../interfaces/action.ts';
 import UIObject from '../interfaces/uiobject.ts';
-import { UIMap, VariableMap, StyleMap  } from '../data/global.ts';
-import { ACTION_TYPES } from '../data/lssContext.ts';
+import { ACTION_TYPES, FILE_TYPES } from '../data/lssContext.ts';
+import { generateUID } from "../data/cache.ts";
+import * as logger from "../tools/logger.ts"; 
 
 export default class Action implements action {
+
+    fileType: FILE_TYPES;
     uid: string;
     name: string;
-    variables : VariableMap;
-    styles : StyleMap;
-    variations: UIMap;
-    actions: UIMap;
-    parent? : UIObject | undefined;
+    variables : string[];
+    styles : string[];
+    variations: string[];
+    actions: string[];
+    parent?  : string | undefined;
     type: ACTION_TYPES;
-    subject : UIObject;
+    subject : string;
 
-    constructor(uid: string, type: ACTION_TYPES, subject: UIObject, name: string) {
-        this.uid = uid;
+    constructor(type: ACTION_TYPES, subject: string, name: string) {
+        this.fileType = FILE_TYPES.ACTION;
+        this.uid = this.uid = generateUID(this);;
         this.subject = subject;
         this.name = name;
         this.type = type;
-        this.variables = {};
-        this.styles = {};
-        this.variations = {};
-        this.actions = {};
+        this.variables = [];
+        this.styles = [];
+        this.variations = [];
+        this.actions = [];
+        logger.log('New action',this.name)
     }
 
     compile() : string {
-        return "";
-    }
 
-    compileCss() : string {
-        return "";
+        const out = {
+            fileType: this.fileType,
+            uid: this.uid,
+            name: this.name,
+            type: this.type,
+            subject: this.subject,
+            variables: this.variables,
+            styles: this.styles,
+            variations: this.variations,
+            actions: this.actions
+        };
+
+        return JSON.stringify(out);
     }
 
     inherit(parent: UIObject) : void {
 
     }
 
-    setParent(parent: UIObject) : void {
+    setParent(parent: string) : void {
         this.parent = parent;
-    }
-
-    getVariables() : VariableMap {
-        return this.variables;
-    }
-
-    getStyles() : StyleMap {
-        return this.styles;
-    }
-
-    getActions() : UIMap {
-        return this.actions;
-    }
-
-    getVariations() : UIMap {
-        return this.variations;
     }
 };
