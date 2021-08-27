@@ -47,6 +47,27 @@ export default class Action implements action {
         return JSON.stringify(out);
     }
 
+    addVariable(variable: string) : void {
+        this.variables.push(variable);
+        this.variables = Array.from(new Set(this.variables));
+    }
+
+    addStyle(style: string) : void {
+        this.styles.push(style);
+        this.styles = Array.from(new Set(this.styles));
+    }
+
+    addVariation(variation: string) : void {
+        this.variations.push(variation);
+        this.variations = Array.from(new Set(this.variations));
+    }
+
+    addAction(action: string) : void {
+        this.actions.push(action);
+        this.actions = Array.from(new Set(this.actions));
+    }
+
+
     inherit(parent: UIObject) : void {
 
     }

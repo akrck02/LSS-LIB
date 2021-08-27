@@ -18,10 +18,6 @@ export default class Theme implements theme {
         logger.log('New theme',this.name);
     }
 
-    addVariable(uid : string): void {
-        this.variables.push(uid);
-    }
-
     compile(): string {
         let out = {
             fileType: this.fileType,
@@ -31,4 +27,10 @@ export default class Theme implements theme {
         };
         return JSON.stringify(out);
     }
+
+    addVariable(variable: string) : void {
+        this.variables.push(variable);
+        this.variables = Array.from(new Set(this.variables));
+    }
+
 }

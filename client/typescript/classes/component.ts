@@ -17,7 +17,7 @@ export default class Component implements component {
     variations : string [];
     variables : string [];
 
-    constructor(uid: string, name: string, type: COMPONENT_TYPES) {
+    constructor(name: string, type: COMPONENT_TYPES) {
         this.fileType = FILE_TYPES.COMPONENT;
         this.uid = generateUID(this);
         this.name = name;
@@ -27,6 +27,27 @@ export default class Component implements component {
         this.variations = [];
         this.variables = [];  
         logger.log('New component', this.name);
+    }
+
+
+    addVariable(variable: string) : void {
+        this.variables.push(variable);
+        this.variables = Array.from(new Set(this.variables));
+    }
+
+    addStyle(style: string) : void {
+        this.styles.push(style);
+        this.styles = Array.from(new Set(this.styles));
+    }
+
+    addVariation(variation: string) : void {
+        this.variations.push(variation);
+        this.variations = Array.from(new Set(this.variations));
+    }
+
+    addAction(action: string) : void {
+        this.actions.push(action);
+        this.actions = Array.from(new Set(this.actions));
     }
 
     compile() : string {
