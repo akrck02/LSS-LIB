@@ -22,6 +22,5 @@ This library is SIMPLE.<br>
 > LSS creates a minified version of CSS in just **one file**.<br>
 
 ## Supported languages 
- - `Java (Core / Client)`
- - `Javascript (Client)`
- - `Typescript (Client)`
+ - `Javascript (Core / Client)`
+ - `Typescript (Core / Client)`

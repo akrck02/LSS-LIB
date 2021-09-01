@@ -1,0 +1,17 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/lss.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "dependencies": {},
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

@@ -1,5 +1,5 @@
 *.iml
-node_modules/
+/core/node_modules/
 *.class
 *.idea
 *.iml
