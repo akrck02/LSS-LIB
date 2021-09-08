@@ -56,4 +56,5 @@ export default class ThemeBuilder implements Builder {
     build () : Theme {
         return new Theme(this);
     }
+
 }
