@@ -30,16 +30,19 @@ export default class Lss implements Runnable {
         return new Promise((resolve, reject) => {
             
             this.logger.start();
-            
-            console.log(typeof this.content);
-            
-            //this.parser.parse(this.content);
-            this.compiler.compile();
+
+            const parsed = this.parser.parse(this.content)
+            parsed.forEach(compilable => {
+                this.handler.setParsed(compilable.getUID(), compilable);
+            });
+           
+            const output = this.compiler.compile();
             this.logger.end();
 
             resolve({
                 success: true,
                 config: this.config,
+                output: output
             });
         });
     }

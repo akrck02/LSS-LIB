@@ -3,6 +3,7 @@ import Compilable from "../interfaces/compilable";
 
 export class Component implements Compilable {
 
+    public COMPLEX : boolean = true;
     private uid: string = "";
     private name: string = "";
     private type: string = "";
@@ -33,6 +34,10 @@ export class Component implements Compilable {
                 break;
         }
         return suffix;
+    }
+
+    getUID(): string {
+        return this.uid;
     }
 
     compile(): string {

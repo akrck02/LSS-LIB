@@ -3,6 +3,7 @@ import Compilable from "../interfaces/compilable";
 
 export class Action implements Compilable{
     
+    public COMPLEX : boolean = true;
     private uid: string = "";
     private name: string = "";
     private type: string = "";
@@ -24,6 +25,10 @@ export class Action implements Compilable{
         this.variations = builder.getVariations();
     }
     
+    getUID(): string {
+        return this.uid;
+    }
+
     compile(): string {
         let out = '';
         

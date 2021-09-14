@@ -7,6 +7,8 @@ export default interface IHandler {
     getCached(uid : string) : string;
     getParsed(uid : string) : Compilable;
     
+    getParsedData() : {[key:string] : Compilable};
+
     setCached(uid : string, result : string) : void;
     setParsed(uid : string, object : Compilable) : void;
 }
@@ -26,6 +28,10 @@ export class Handler implements IHandler {
     }
     getParsed(uid : string) : Compilable {
         return this.parsed[uid];
+    }
+
+    getParsedData() : {[key:string] : Compilable} {
+        return this.parsed;
     }
     
     setCached(uid : string, result : string) : void {

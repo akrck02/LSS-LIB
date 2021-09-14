@@ -1,3 +1,5 @@
 export default interface Compilable {
-    compile(): void;
+    COMPLEX : boolean,
+    getUID(): string;
+    compile(): string;
 }

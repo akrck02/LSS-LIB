@@ -25,10 +25,23 @@ export class Compiler extends ACompiler {
 
         this.logger.log(LogActor.COMPILER, LogStatus.RUN, "Starting.");
 
+        let result = "";
+        const parsed = this.handler.getParsedData();
 
+        Object.keys(parsed).forEach(key => {
+            if(!this.handler.getCached(key)){
+
+                const out = parsed[key].compile();
+                this.handler.setCached(key, out);
+
+                if(parsed[key].COMPLEX)
+                    result += out;
+                
+            }
+        });
 
         this.logger.log(LogActor.COMPILER, LogStatus.RUN, "Done.");
-        return "";
+        return result;
     
     }
 }
