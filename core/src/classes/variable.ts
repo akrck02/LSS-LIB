@@ -6,6 +6,7 @@ import Builder from '../interfaces/builder';
  */
 export class Variable  implements Compilable {
 
+    public COMPLEX : boolean = false;
     private uid: string;
     private name: string;
     private value: string;
@@ -14,6 +15,10 @@ export class Variable  implements Compilable {
         this.uid = builder.getUid();
         this.name = builder.getName();
         this.value = builder.getValue();
+    }
+
+    getUID(): string {
+        return this.uid;
     }
 
     compile(): string {

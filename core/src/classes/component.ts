@@ -3,6 +3,7 @@ import Compilable from "../interfaces/compilable";
 
 export class Component implements Compilable {
 
+    public COMPLEX : boolean = true;
     private uid: string = "";
     private name: string = "";
     private type: string = "";
@@ -22,19 +23,53 @@ export class Component implements Compilable {
         this.variations = builder.getVariations();
     }
 
+    private evalType(): string {
+        let suffix = "";
+        switch (this.type) {
+            case "class":
+                suffix = ".";
+                break;
+            case "id":
+                suffix = "#";
+                break;
+        }
+        return suffix;
+    }
+
+    getUID(): string {
+        return this.uid;
+    }
+
     compile(): string {
-     let out = "";
+     let out = this.evalType() + this.name + " {";
      
-     out += "";
+     this.styles.forEach(style => {
+        //compile style
+     });
+
+     this.variables.forEach(variable => {
+         //compile variable
+     });
+
+     this.actions.forEach(action => {
+         //compile action
+     });
+
+     this.variations.forEach(variation => {
+         //compile variation
+     });
+
+     out += "}";
      return out;
     }
 }
 
 export default class ComponentBuilder implements  Builder {
 
-    private uid: string = "";
-    private name: string = "";
-    private type: string = "";
+    private uid : string = "";
+    private name : string = "";
+    private type : string = "";
+
     private styles : string[] = [];
     private variables : string[] = [];
     private actions : string[] = [];
@@ -69,12 +104,12 @@ export default class ComponentBuilder implements  Builder {
     }
  
 
-    setUid(uid: string) : Builder {
+    setUid(uid: string) : ComponentBuilder {
         this.uid = uid;
         return this;
     }
 
-    setName(name: string) : Builder {
+    setName(name: string) : ComponentBuilder {
         this.name = name;
         return this;
     }
@@ -84,22 +119,22 @@ export default class ComponentBuilder implements  Builder {
         return this;
     }
 
-    setStyles(styles: string[]) : Builder {
+    setStyles(styles: string[]) : ComponentBuilder {
         this.styles = styles;
         return this;
     }
 
-    setVariables(variables: string[]) : Builder {
+    setVariables(variables: string[]) : ComponentBuilder {
         this.variables = variables;
         return this;
     }
 
-    setActions(actions: string[]) : Builder {
+    setActions(actions: string[]) : ComponentBuilder {
         this.actions = actions;
         return this;
     }
 
-    setVariations(variations: string[]) : Builder {
+    setVariations(variations: string[]) : ComponentBuilder {
         this.variations = variations;
         return this;
     }

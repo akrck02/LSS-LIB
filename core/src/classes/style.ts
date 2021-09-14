@@ -3,6 +3,7 @@ import Compilable from "../interfaces/compilable";
 
 export class Style implements Compilable {
 
+    public COMPLEX : boolean = false;
     private uid: string = "";
     private name : string = "";
     private value: string = "";
@@ -12,6 +13,10 @@ export class Style implements Compilable {
         this.uid = builder.getUid();
         this.name = builder.getName();
         this.value = builder.getValue();
+    }
+
+    getUID(): string {
+        return this.uid;
     }
 
     compile(): string {

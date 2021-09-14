@@ -1,5 +1,51 @@
-import LssError from "./errors/errors";
+import Runnable from "./interfaces/runnable";
+import { IConfiguration } from "./config/configuration";
+import Logger from "./tools/logger";
+import IHandler, { Handler } from "./tools/handler";
+import { Compiler, ACompiler } from "./tools/compiler";
+import { AParser, Parser } from "./tools/parser";
+import { NumberedList } from "./interfaces/datastructure";
 
-console.log("Hello World!");
+export default class Lss implements Runnable {
+    private config: IConfiguration;
+    private content: NumberedList;
+    private logger: Logger;
 
-throw new LssError("Good bye world!");
+    private parser: AParser;
+    private handler: IHandler;
+    private compiler: ACompiler;
+
+    constructor(config: IConfiguration, content: NumberedList) {
+        this.config = config;
+        this.content = content;
+
+        this.logger = new Logger();
+        this.handler = new Handler();
+
+        this.parser = new Parser(this.logger, this.handler);
+        this.compiler = new Compiler(this.logger, this.handler);
+    }
+
+    run(): Promise<Object> {
+        return new Promise((resolve, reject) => {
+            
+            this.logger.start();
+
+            const parsed = this.parser.parse(this.content)
+            parsed.forEach(compilable => {
+                this.handler.setParsed(compilable.getUID(), compilable);
+            });
+           
+            const output = this.compiler.compile();
+            this.logger.end();
+
+            resolve({
+                success: true,
+                config: this.config,
+                output: output
+            });
+        });
+    }
+}
+
+module.exports = Lss;

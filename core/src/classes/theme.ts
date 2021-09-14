@@ -3,12 +3,17 @@ import Compilable from '../interfaces/compilable';
 
 export class Theme implements Compilable {
     
+    public COMPLEX : boolean = true;
     private uid : string;
     private variables: string[];
 
     constructor(builder : ThemeBuilder) {
         this.uid = builder.getUid();
         this.variables = builder.getVariables();
+    }
+
+    getUID(): string {
+        return this.uid;
     }
 
     compile(): string {
@@ -56,4 +61,5 @@ export default class ThemeBuilder implements Builder {
     build () : Theme {
         return new Theme(this);
     }
+
 }
