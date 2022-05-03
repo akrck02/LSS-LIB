@@ -1,3 +1,11 @@
+<hr><br> 
+ 
+   **THIS LIBRARY IS CURRENTLY DEPRECATED!** ⚠️
+
+   >   The author recommneds using the newest version of [BubbleUI](https://github.com/akrck02/Bubble-UI) for UI component creation.
+
+<br><hr><br>
+
 # LSS - Logic Style Sheets
 
 Imagine creating CSS with your favorite programming language. <br>
